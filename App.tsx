@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Dashboard from './components/Dashboard';
@@ -23,10 +24,22 @@ const App: React.FC = () => {
   const [currentView, setCurrentView] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [logs, setLogs] = useState<MaintenanceLog[]>(INITIAL_LOGS);
-  const [machines, setMachines] = useState<Machine[]>(INITIAL_MACHINES);
+  
+  // Initialize Machines with LocalStorage persistence
+  const [machines, setMachines] = useState<Machine[]>(() => {
+    const savedMachines = localStorage.getItem('senai_machines');
+    return savedMachines ? JSON.parse(savedMachines) : INITIAL_MACHINES;
+  });
+
   const [notifications, setNotifications] = useState<Notification[]>(INITIAL_NOTIFICATIONS);
   const [reportHistory, setReportHistory] = useState<ReportEntry[]>(INITIAL_REPORTS);
-  const [operationalLogs, setOperationalLogs] = useState<OperationalLog[]>(INITIAL_OPERATIONAL_LOGS);
+  
+  // Initialize Operational Logs with LocalStorage persistence
+  const [operationalLogs, setOperationalLogs] = useState<OperationalLog[]>(() => {
+    const savedLogs = localStorage.getItem('senai_operational_logs');
+    return savedLogs ? JSON.parse(savedLogs) : INITIAL_OPERATIONAL_LOGS;
+  });
+
   const [showAI, setShowAI] = useState(false);
   
   // Lifted state for machine navigation
@@ -36,6 +49,16 @@ const App: React.FC = () => {
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
   }, [theme]);
+
+  // Persist Machines (e.g. Operating Hours, Status)
+  useEffect(() => {
+    localStorage.setItem('senai_machines', JSON.stringify(machines));
+  }, [machines]);
+
+  // Persist Operational Logs (History)
+  useEffect(() => {
+    localStorage.setItem('senai_operational_logs', JSON.stringify(operationalLogs));
+  }, [operationalLogs]);
 
   const toggleTheme = () => {
     setTheme(prev => prev === 'dark' ? 'light' : 'dark');
@@ -51,6 +74,15 @@ const App: React.FC = () => {
     setIsAuthenticated(false);
     setUserRole('guest');
     setUserName('');
+    setCurrentView('home');
+    setSelectedMachineId(null);
+    
+    // RESET SAFETY CHECKS ON LOGOUT
+    // This locks all machines, requiring the safety questionnaire to be filled out again upon next login.
+    setMachines(prevMachines => prevMachines.map(m => ({
+      ...m,
+      safetyCheckCompleted: false
+    })));
   };
 
   const handleAddLog = (newLog: MaintenanceLog) => {

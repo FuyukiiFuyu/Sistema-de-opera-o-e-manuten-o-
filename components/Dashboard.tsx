@@ -1,4 +1,3 @@
-
 import React, { useState, useRef, useEffect } from 'react';
 import { Machine, MachineStatus, MaintenanceLog, Notification } from '../types';
 import { 
@@ -39,7 +38,7 @@ const MachineNode: React.FC<MachineNodeProps> = ({ machine, size = 'md', label =
             onMouseDown={onMouseDown}
             onTouchStart={onTouchStart}
             className={`
-                absolute bg-theme-input/20 border-2 border-dashed border-theme-border rounded flex items-center justify-center text-[10px] text-theme-text-muted 
+                absolute bg-theme-input/20 border-2 border-dashed border-theme-border rounded flex items-center justify-center text-xs text-theme-text-muted 
                 ${size === 'lg' ? 'w-24 h-20' : size === 'md' ? 'w-16 h-14' : 'w-12 h-12'}
                 ${isEditing ? 'cursor-move hover:border-theme-accent-solid hover:bg-theme-input/40 z-50' : ''}
             `}
@@ -81,14 +80,14 @@ const MachineNode: React.FC<MachineNodeProps> = ({ machine, size = 'md', label =
               machine.status === MachineStatus.MAINTENANCE ? 'bg-amber-500' : 'bg-theme-accent-danger'
           }`}></div>
           
-          <div className="text-[9px] font-bold text-theme-text-muted uppercase mb-1 tracking-wider text-center px-1 truncate w-full pointer-events-none">{label || machine.name.split(' ')[0]}</div>
-          <div className="font-mono text-[9px] text-theme-text-main font-bold bg-theme-input px-1.5 py-0.5 rounded border border-theme-border/50 pointer-events-none">
+          <div className="text-[10px] font-bold text-theme-text-muted uppercase mb-1 tracking-wider text-center px-1 truncate w-full pointer-events-none">{label || machine.name.split(' ')[0]}</div>
+          <div className="font-mono text-[10px] text-theme-text-main font-bold bg-theme-input px-1.5 py-0.5 rounded border border-theme-border/50 pointer-events-none">
               {machine.id.length > 5 ? '...'+machine.id.slice(-4) : machine.id}
           </div>
           
           {/* Hover Details (Only in View Mode) */}
           {!isEditing && (
-              <div className="absolute opacity-0 group-hover:opacity-100 -bottom-8 left-1/2 -translate-x-1/2 bg-theme-sidebar text-white text-[10px] px-2 py-1 rounded whitespace-nowrap z-50 border border-theme-border shadow-xl pointer-events-none transition-opacity">
+              <div className="absolute opacity-0 group-hover:opacity-100 -bottom-8 left-1/2 -translate-x-1/2 bg-theme-sidebar text-white text-xs px-2 py-1 rounded whitespace-nowrap z-50 border border-theme-border shadow-xl pointer-events-none transition-opacity">
                   {machine.model}
               </div>
           )}
@@ -360,12 +359,12 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
             {searchTerm ? (
                  <button 
                     onClick={() => setSearchTerm('')}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-card text-theme-text-muted px-3 py-1.5 rounded-lg font-bold text-[10px] hover:text-white transition flex items-center gap-1 border border-theme-border uppercase tracking-wider"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-card text-theme-text-muted px-3 py-1.5 rounded-lg font-bold text-xs hover:text-white transition flex items-center gap-1 border border-theme-border uppercase tracking-wider"
                  >
                     <X size={14} /> Limpar
                 </button>
             ) : (
-                 <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-accent-solid text-white px-4 py-1.5 rounded-lg font-bold text-[10px] shadow-glow hover:brightness-110 transition flex items-center gap-1 uppercase tracking-wider">
+                 <button className="absolute right-2 top-1/2 -translate-y-1/2 bg-theme-accent-solid text-white px-4 py-1.5 rounded-lg font-bold text-xs shadow-glow hover:brightness-110 transition flex items-center gap-1 uppercase tracking-wider">
                     BUSCAR
                 </button>
             )}
@@ -390,10 +389,10 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                         <div className="flex items-center gap-2">
                              <Bell size={16} className="text-theme-accent-solid" />
                              <span className="font-bold text-sm text-theme-text-main uppercase">Notificações</span>
-                             {unreadCount > 0 && <span className="bg-theme-accent-danger text-white text-[9px] font-bold px-1.5 py-0.5 rounded-full">{unreadCount}</span>}
+                             {unreadCount > 0 && <span className="bg-theme-accent-danger text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">{unreadCount}</span>}
                         </div>
                         {notifications.length > 0 && (
-                            <button onClick={onClearNotifications} className="text-[10px] font-bold text-theme-text-muted hover:text-white hover:underline uppercase">
+                            <button onClick={onClearNotifications} className="text-xs font-bold text-theme-text-muted hover:text-white hover:underline uppercase">
                                 Limpar Tudo
                             </button>
                         )}
@@ -413,10 +412,10 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                                     }`}></div>
                                     <div>
                                         <div className="flex justify-between items-start mb-0.5">
-                                            <h4 className={`text-xs font-bold ${!notif.read ? 'text-theme-text-main' : 'text-theme-text-muted'}`}>{notif.title}</h4>
-                                            <span className="text-[9px] text-theme-text-muted font-mono">{notif.timestamp}</span>
+                                            <h4 className={`text-sm font-bold ${!notif.read ? 'text-theme-text-main' : 'text-theme-text-muted'}`}>{notif.title}</h4>
+                                            <span className="text-[10px] text-theme-text-muted font-mono">{notif.timestamp}</span>
                                         </div>
-                                        <p className="text-[11px] text-theme-text-muted leading-snug">{notif.message}</p>
+                                        <p className="text-xs text-theme-text-muted leading-snug">{notif.message}</p>
                                     </div>
                                 </div>
                             ))
@@ -456,13 +455,13 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                             <div className="absolute top-0 right-0 w-8 h-8 bg-gradient-to-bl from-white/5 to-transparent -mr-4 -mt-4 rotate-45"></div>
                             <div className="flex justify-between items-start mb-4">
                                 <div className="bg-theme-input px-3 py-1.5 rounded border border-theme-border group-hover:border-theme-accent-solid/30 transition-colors">
-                                    <div className="text-[9px] text-theme-text-muted font-bold uppercase tracking-widest font-mono">PATRIMÔNIO</div>
+                                    <div className="text-[10px] text-theme-text-muted font-bold uppercase tracking-widest font-mono">PATRIMÔNIO</div>
                                     <div className="text-sm font-bold text-theme-text-main flex items-center gap-1.5 font-mono tracking-wide">
                                         <Tag size={12} />
                                         {machine.id}
                                     </div>
                                 </div>
-                                <div className={`px-2.5 py-1 rounded border text-[9px] font-bold uppercase tracking-wide flex items-center gap-1.5 ${getStatusColor(machine.status)}`}>
+                                <div className={`px-2.5 py-1 rounded border text-[10px] font-bold uppercase tracking-wide flex items-center gap-1.5 ${getStatusColor(machine.status)}`}>
                                     {getStatusIcon(machine.status)}
                                     {getStatusLabel(machine.status)}
                                 </div>
@@ -475,7 +474,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                                     </div>
                                     <div>
                                         <h3 className="font-bold text-theme-text-main text-sm uppercase tracking-wide font-tech">{machine.name}</h3>
-                                        <p className="text-[10px] text-theme-text-muted line-clamp-2 leading-relaxed font-mono mt-1">
+                                        <p className="text-xs text-theme-text-muted line-clamp-2 leading-relaxed font-mono mt-1">
                                             {machine.model}
                                         </p>
                                     </div>
@@ -521,8 +520,8 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                         <img src="https://lh3.googleusercontent.com/d/1L2mI54ppN63F77yrXlRhQXoaWMoDLjJc" alt="Logo" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
                     </div>
                     <div className="flex flex-col">
-                        <span className="text-theme-text-muted text-[10px] font-mono uppercase tracking-[0.2em]">SISTEMA DE GESTÃO</span>
-                        <span className="text-white font-bold tracking-widest text-xs uppercase font-tech">
+                        <span className="text-theme-text-muted text-xs font-mono uppercase tracking-[0.2em]">SISTEMA DE GESTÃO</span>
+                        <span className="text-white font-bold tracking-widest text-sm uppercase font-tech">
                             CÉLULA 1.A
                         </span>
                     </div>
@@ -539,7 +538,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
             </div>
             
             <div className="absolute bottom-6 right-6 flex flex-col items-end opacity-50">
-                 <div className="text-[10px] font-mono text-theme-text-muted uppercase">STATUS DO SISTEMA</div>
+                 <div className="text-xs font-mono text-theme-text-muted uppercase">STATUS DO SISTEMA</div>
                  <div className="flex items-center gap-2 text-emerald-400 font-bold font-mono text-sm">
                     <div className="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
                     ONLINE
@@ -559,7 +558,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                         <div className="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 border border-emerald-500/20">
                             <Zap size={24} />
                         </div>
-                        <span className="bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-2 py-1 rounded border border-emerald-500/20 font-mono">OEE +2.4%</span>
+                        <span className="bg-emerald-500/10 text-emerald-400 text-xs font-bold px-2 py-1 rounded border border-emerald-500/20 font-mono">OEE +2.4%</span>
                     </div>
                     <div className="relative z-10">
                         <h4 className="font-bold text-theme-text-main text-lg font-tech uppercase tracking-wide">Eficiência</h4>
@@ -581,7 +580,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                         </div>
                         <div className="flex -space-x-2">
                             {/* Visual indicator for log count */}
-                            <div className="w-6 h-6 rounded-full bg-theme-accent-solid border-2 border-theme-card flex items-center justify-center text-[9px] font-bold text-white font-mono shadow-sm">
+                            <div className="w-6 h-6 rounded-full bg-theme-accent-solid border-2 border-theme-card flex items-center justify-center text-[10px] font-bold text-white font-mono shadow-sm">
                                 {logs.length}
                             </div>
                         </div>
@@ -611,7 +610,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                         <div className="w-12 h-12 rounded-xl bg-theme-accent-danger/10 flex items-center justify-center text-theme-accent-danger border border-theme-accent-danger/20">
                             <Shield size={24} />
                         </div>
-                        <span className="bg-theme-accent-danger/10 text-theme-accent-danger text-[10px] font-bold px-2 py-1 rounded border border-theme-accent-danger/20 font-mono">NR-12 OK</span>
+                        <span className="bg-theme-accent-danger/10 text-theme-accent-danger text-xs font-bold px-2 py-1 rounded border border-theme-accent-danger/20 font-mono">NR-12 OK</span>
                     </div>
                     <div className="relative z-10">
                         <h4 className="font-bold text-theme-text-main text-lg font-tech uppercase tracking-wide">Segurança</h4>
@@ -628,7 +627,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                           <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-theme-accent-solid opacity-75"></span>
                           <span className="relative inline-flex rounded-full h-2 w-2 bg-theme-accent-solid"></span>
                         </span>
-                        <span className="text-[9px] font-bold text-theme-accent-solid uppercase">ONLINE</span>
+                        <span className="text-[10px] font-bold text-theme-accent-solid uppercase">ONLINE</span>
                     </div>
                     <div className="flex items-start justify-between relative z-10">
                          <div className="w-12 h-12 rounded-xl bg-theme-accent-solid text-white flex items-center justify-center shadow-glow">
@@ -661,15 +660,15 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                     {/* ZOOM CONTROLS (INLINE) */}
                     <div className="flex items-center bg-theme-input rounded-lg border border-theme-border overflow-hidden ml-4">
                         <button onClick={handleZoomOut} className="p-1.5 hover:bg-theme-card text-theme-text-muted hover:text-white transition" title="Diminuir Zoom">
-                            <ZoomOut size={14} />
+                            <ZoomOut size={16} />
                         </button>
                         <div className="w-px h-4 bg-theme-border"></div>
                         <button onClick={handleResetView} className="p-1.5 hover:bg-theme-card text-theme-text-muted hover:text-white transition" title="Resetar Visualização">
-                            <RotateCcw size={14} />
+                            <RotateCcw size={16} />
                         </button>
                         <div className="w-px h-4 bg-theme-border"></div>
                         <button onClick={handleZoomIn} className="p-1.5 hover:bg-theme-card text-theme-text-muted hover:text-white transition" title="Aumentar Zoom">
-                            <ZoomIn size={14} />
+                            <ZoomIn size={16} />
                         </button>
                     </div>
                     
@@ -677,7 +676,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                     {!isEditMode && (
                         <button 
                             onClick={() => setIsEditMode(true)}
-                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-theme-accent-solid/30 bg-theme-accent-solid/10 text-[10px] font-bold text-theme-accent-solid hover:bg-theme-accent-solid hover:text-white transition uppercase tracking-wider ml-2"
+                            className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-theme-accent-solid/30 bg-theme-accent-solid/10 text-xs font-bold text-theme-accent-solid hover:bg-theme-accent-solid hover:text-white transition uppercase tracking-wider ml-2"
                         >
                             <Edit size={14} /> Editar
                         </button>
@@ -689,15 +688,15 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                     {/* EDIT TOOLBAR */}
                     {isEditMode && (
                         <div className="flex items-center gap-2 mr-4 bg-theme-input px-2 py-1 rounded-lg border border-theme-border">
-                            <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-1 px-3 py-1.5 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-white text-[10px] font-bold uppercase transition">
+                            <button onClick={() => setIsAddModalOpen(true)} className="flex items-center gap-1 px-3 py-1.5 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500 hover:text-white text-xs font-bold uppercase transition">
                                 <Plus size={14} /> Adicionar
                             </button>
                             <div className="w-px h-4 bg-theme-border"></div>
-                            <span className="flex items-center gap-2 text-[10px] text-theme-text-muted px-2 cursor-help" title="Clique e arraste o fundo para mover o layout. Arraste as máquinas para reposicionar.">
+                            <span className="flex items-center gap-2 text-xs text-theme-text-muted px-2 cursor-help" title="Clique e arraste o fundo para mover o layout. Arraste as máquinas para reposicionar.">
                                 <Grip size={14} /> Arrastar
                             </span>
                              <div className="w-px h-4 bg-theme-border"></div>
-                            <button onClick={() => setIsEditMode(false)} className="flex items-center gap-1 px-3 py-1.5 rounded bg-theme-accent-solid text-white hover:scale-105 text-[10px] font-bold uppercase transition">
+                            <button onClick={() => setIsEditMode(false)} className="flex items-center gap-1 px-3 py-1.5 rounded bg-theme-accent-solid text-white hover:scale-105 text-xs font-bold uppercase transition">
                                 <Save size={14} /> Salvar
                             </button>
                         </div>
@@ -705,7 +704,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                     
                     <button 
                         onClick={() => setIsExpanded(!isExpanded)}
-                        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-theme-border bg-theme-input text-[10px] font-bold text-theme-text-muted hover:text-white hover:border-theme-accent-solid transition uppercase tracking-wider"
+                        className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-theme-border bg-theme-input text-xs font-bold text-theme-text-muted hover:text-white hover:border-theme-accent-solid transition uppercase tracking-wider"
                     >
                         {isExpanded ? <Minimize2 size={14} /> : <Maximize2 size={14} />}
                         {isExpanded ? 'MINIMIZAR' : 'EXPANDIR'}
@@ -725,12 +724,12 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                 `}
              >
                  {isEditMode && (
-                     <div className="absolute top-4 left-4 z-40 bg-black/60 backdrop-blur text-white text-[10px] px-3 py-1 rounded border border-white/10 pointer-events-none flex items-center gap-2">
+                     <div className="absolute top-4 left-4 z-40 bg-black/60 backdrop-blur text-white text-xs px-3 py-1 rounded border border-white/10 pointer-events-none flex items-center gap-2">
                          <MousePointer2 size={12} /> Modo de Edição Ativo
                      </div>
                  )}
                  {!isEditMode && !isExpanded && (
-                      <div className="absolute top-4 left-4 z-40 text-theme-text-muted/50 text-[10px] pointer-events-none">
+                      <div className="absolute top-4 left-4 z-40 text-theme-text-muted/50 text-xs pointer-events-none">
                          Arrastar para mover
                      </div>
                  )}
@@ -763,7 +762,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                                     onMouseDown={(e) => isEditMode ? handleItemMouseDown(e, item.uid) : undefined}
                                     onTouchStart={(e) => isEditMode ? handleItemTouchStart(e, item.uid) : undefined}
                                     className={`
-                                        border border-theme-border bg-theme-input/80 text-theme-text-muted text-[10px] font-bold px-4 py-2 rounded uppercase tracking-widest z-0 flex items-center justify-center text-center
+                                        border border-theme-border bg-theme-input/80 text-theme-text-muted text-xs font-bold px-4 py-2 rounded uppercase tracking-widest z-0 flex items-center justify-center text-center
                                         ${isEditMode ? 'cursor-move hover:border-theme-accent-solid z-50' : ''}
                                     `}
                                 >
@@ -799,11 +798,11 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
 
                     {/* Floor Decorations (Legend) */}
                     <div className="absolute bottom-4 left-4 p-3 bg-theme-card border border-theme-border rounded-lg shadow-lg z-0 pointer-events-none">
-                        <div className="text-[9px] font-bold text-theme-text-muted uppercase mb-2 border-b border-theme-border pb-1">Legenda</div>
+                        <div className="text-[10px] font-bold text-theme-text-muted uppercase mb-2 border-b border-theme-border pb-1">Legenda</div>
                         <div className="space-y-1.5">
-                            <div className="flex items-center gap-2 text-[9px] text-theme-text-muted"><div className="w-2 h-2 rounded-full bg-emerald-500"></div> OPERACIONAL</div>
-                            <div className="flex items-center gap-2 text-[9px] text-theme-text-muted"><div className="w-2 h-2 rounded-full bg-amber-500"></div> MANUTENÇÃO</div>
-                            <div className="flex items-center gap-2 text-[9px] text-theme-text-muted"><div className="w-2 h-2 rounded-full bg-theme-accent-danger"></div> PARADA/DESL.</div>
+                            <div className="flex items-center gap-2 text-[10px] text-theme-text-muted"><div className="w-2 h-2 rounded-full bg-emerald-500"></div> OPERACIONAL</div>
+                            <div className="flex items-center gap-2 text-[10px] text-theme-text-muted"><div className="w-2 h-2 rounded-full bg-amber-500"></div> MANUTENÇÃO</div>
+                            <div className="flex items-center gap-2 text-[10px] text-theme-text-muted"><div className="w-2 h-2 rounded-full bg-theme-accent-danger"></div> PARADA/DESL.</div>
                         </div>
                     </div>
 
@@ -844,7 +843,7 @@ const Dashboard: React.FC<DashboardProps> = ({ machines, logs, notifications, on
                                 `}
                             >
                                 {isPlaced && (
-                                    <div className="absolute top-2 right-2 bg-theme-input text-theme-text-muted text-[9px] font-bold px-2 py-0.5 rounded border border-theme-border">
+                                    <div className="absolute top-2 right-2 bg-theme-input text-theme-text-muted text-[10px] font-bold px-2 py-0.5 rounded border border-theme-border">
                                         JÁ NO LAYOUT
                                     </div>
                                 )}

@@ -151,11 +151,11 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
           <div className="mt-12 flex gap-4">
              <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
                 <span className="block text-xl font-bold text-white font-mono">100%</span>
-                <span className="text-[10px] uppercase text-theme-text-muted tracking-wider">Digital</span>
+                <span className="text-xs uppercase text-theme-text-muted tracking-wider">Digital</span>
              </div>
              <div className="px-4 py-2 bg-white/5 rounded-lg border border-white/10 backdrop-blur-sm">
                 <span className="block text-xl font-bold text-theme-accent-danger font-mono">24/7</span>
-                <span className="text-[10px] uppercase text-theme-text-muted tracking-wider">Monitoramento</span>
+                <span className="text-xs uppercase text-theme-text-muted tracking-wider">Monitoramento</span>
              </div>
           </div>
         </div>
@@ -194,36 +194,36 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
           <div className="bg-theme-input p-1 rounded-xl flex border border-theme-border">
             <button 
               onClick={() => handleRoleChange('admin')}
-              className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all duration-300 flex items-center justify-center gap-2
+              className={`flex-1 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all duration-300 flex items-center justify-center gap-2
                 ${activeRole === 'admin' ? 'bg-theme-accent-danger text-white shadow-lg' : 'text-theme-text-muted hover:text-white hover:bg-white/5'}`}
             >
-              <Shield size={14} /> Docente
+              <Shield size={16} /> Docente
             </button>
             <button 
               onClick={() => handleRoleChange('student')}
-              className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all duration-300 flex items-center justify-center gap-2
+              className={`flex-1 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all duration-300 flex items-center justify-center gap-2
                 ${activeRole === 'student' ? 'bg-theme-accent-danger text-white shadow-lg' : 'text-theme-text-muted hover:text-white hover:bg-white/5'}`}
             >
-              <User size={14} /> Aluno
+              <User size={16} /> Aluno
             </button>
             <button 
               onClick={() => handleRoleChange('tech')}
-              className={`flex-1 py-2.5 rounded-lg text-xs font-bold uppercase tracking-wide transition-all duration-300 flex items-center justify-center gap-2
+              className={`flex-1 py-3 rounded-lg text-sm font-bold uppercase tracking-wide transition-all duration-300 flex items-center justify-center gap-2
                 ${activeRole === 'tech' ? 'bg-theme-accent-danger text-white shadow-lg' : 'text-theme-text-muted hover:text-white hover:bg-white/5'}`}
             >
-              <Wrench size={14} /> Técnico
+              <Wrench size={16} /> Técnico
             </button>
           </div>
           
           {/* Messages */}
           {error && (
-              <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2 animate-shake">
-                  <AlertCircle size={16} /> {error}
+              <div className="bg-red-500/10 border border-red-500/50 text-red-400 px-4 py-3 rounded-xl text-sm font-bold flex items-center gap-2 animate-shake">
+                  <AlertCircle size={18} /> {error}
               </div>
           )}
           {successMsg && (
-              <div className="bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 px-4 py-3 rounded-xl text-xs font-bold flex items-center gap-2 animate-fade-in">
-                  <Check size={16} /> {successMsg}
+              <div className="bg-emerald-500/10 border border-emerald-500/50 text-emerald-400 px-4 py-3 rounded-xl text-sm font-bold flex items-center gap-2 animate-fade-in">
+                  <Check size={18} /> {successMsg}
               </div>
           )}
 
@@ -243,7 +243,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="seu.email@senai.br"
-                        className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 pl-11 pr-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-sm font-medium"
+                        className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 pl-11 pr-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-base font-medium"
                         required
                     />
                     </div>
@@ -260,14 +260,14 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="••••••••"
-                        className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 pl-11 pr-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-sm font-medium"
+                        className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 pl-11 pr-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-base font-medium"
                         required
                     />
                     </div>
                 </div>
                 </div>
 
-                <div className="flex items-center justify-between text-xs">
+                <div className="flex items-center justify-between text-sm">
                 <label className="flex items-center gap-2 cursor-pointer text-theme-text-muted hover:text-theme-text-main transition">
                     <input type="checkbox" className="rounded border-theme-border bg-theme-input text-theme-accent-danger focus:ring-0" />
                     Lembrar-me
@@ -302,7 +302,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
                                 value={newName}
                                 onChange={(e) => setNewName(e.target.value)}
                                 placeholder="Seu Nome"
-                                className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 pl-11 pr-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-sm font-medium"
+                                className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 pl-11 pr-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-base font-medium"
                                 required
                             />
                         </div>
@@ -318,7 +318,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
                                 value={newEmail}
                                 onChange={(e) => setNewEmail(e.target.value)}
                                 placeholder="email@exemplo.com"
-                                className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 pl-11 pr-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-sm font-medium"
+                                className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 pl-11 pr-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-base font-medium"
                                 required
                             />
                         </div>
@@ -331,7 +331,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
                                 value={newPass}
                                 onChange={(e) => setNewPass(e.target.value)}
                                 placeholder="••••••"
-                                className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 px-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-sm font-medium"
+                                className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 px-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-base font-medium"
                                 required
                             />
                         </div>
@@ -342,7 +342,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
                                 value={confirmPass}
                                 onChange={(e) => setConfirmPass(e.target.value)}
                                 placeholder="••••••"
-                                className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 px-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-sm font-medium"
+                                className="w-full bg-theme-card border border-theme-border rounded-xl py-3.5 px-4 text-theme-text-main placeholder-theme-text-muted/50 outline-none focus:border-theme-accent-danger focus:ring-1 focus:ring-theme-accent-danger transition-all text-base font-medium"
                                 required
                             />
                         </div>
@@ -363,14 +363,14 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
           {activeRole !== 'student' && (
               <div className="text-center pt-6 border-t border-theme-border">
                 {isRegistering ? (
-                    <p className="text-xs text-theme-text-muted">
+                    <p className="text-sm text-theme-text-muted">
                         Já possui uma conta? {' '}
                         <button onClick={() => setIsRegistering(false)} className="text-theme-accent-danger font-bold hover:underline ml-1">
                             Fazer Login
                         </button>
                     </p>
                 ) : (
-                    <p className="text-xs text-theme-text-muted">
+                    <p className="text-sm text-theme-text-muted">
                         Não possui acesso? {' '}
                         <button onClick={() => setIsRegistering(true)} className="text-theme-accent-danger font-bold hover:underline ml-1">
                             Cadastrar-se
@@ -382,7 +382,7 @@ const Login: React.FC<LoginProps> = ({ onLogin, theme, toggleTheme }) => {
 
            {activeRole === 'student' && (
               <div className="text-center pt-6 border-t border-theme-border">
-                <p className="text-xs text-theme-text-muted">
+                <p className="text-sm text-theme-text-muted">
                     Alunos possuem cadastro único. <br/> Contate a secretaria em caso de problemas.
                 </p>
               </div>

@@ -11,9 +11,9 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ['Inter', 'sans-serif'],
+              sans: ['Arial', 'sans-serif'],
               mono: ['JetBrains Mono', 'monospace'],
-              tech: ['Inter', 'sans-serif'],
+              tech: ['Arial', 'sans-serif'],
             },
             colors: {
               // Dynamic Theme Colors using CSS Variables
@@ -27,16 +27,16 @@
                 text: {
                   main: 'var(--text-main)',
                   muted: 'var(--text-muted)',
-                  highlight: '#38bdf8' 
+                  highlight: '#ef4444' 
                 },
                 accent: {
-                  start: '#0ea5e9',   // Sky 500
-                  end: '#3b82f6',     // Blue 500
-                  solid: '#0ea5e9',   // Sky 500
+                  start: '#ef4444',   // Red 500
+                  end: '#b91c1c',     // Red 700
+                  solid: '#ef4444',   // Red 500
                   warning: '#f59e0b', // Amber 500
                   tech: '#64748b',    // Slate 500
-                  danger: '#f43f5e',  // Rose 500
-                  dangerHover: '#e11d48' 
+                  danger: '#ef4444',  // Red 500
+                  dangerHover: '#dc2626' // Red 600
                 }
               },
               senai: {
@@ -46,13 +46,13 @@
             },
             boxShadow: {
               'soft': 'var(--shadow-soft)', 
-              'glow': '0 0 15px rgba(14, 165, 233, 0.3)', 
-              'glow-red': '0 0 15px rgba(244, 63, 94, 0.3)',
-              'led': '0 0 5px rgba(56, 189, 248, 0.5), 0 0 10px rgba(14, 165, 233, 0.3)',
+              'glow': '0 0 15px rgba(239, 68, 68, 0.4)', 
+              'glow-red': '0 0 15px rgba(220, 38, 38, 0.5)',
+              'led': '0 0 5px rgba(239, 68, 68, 0.5), 0 0 10px rgba(185, 28, 28, 0.3)',
             },
             backgroundImage: {
               'grid-pattern': "linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px)",
-              'gradient-accent': "linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%)",
+              'gradient-accent': "linear-gradient(135deg, #ef4444 0%, #b91c1c 100%)", // Red Gradient
               'gradient-red': "linear-gradient(135deg, #f43f5e 0%, #e11d48 100%)"
             }
           }
@@ -61,8 +61,8 @@
     </script>
     <style>
       :root {
-        /* DEFAULT DARK THEME (Slate Technical) */
-        --bg: #0f172a;       /* Slate 900 */
+        /* DARK BLUE THEME (Standard SENAI Industrial Dark) */
+        --bg: #0f172a;       /* Slate 900 (Deep Blue) */
         --sidebar: #1e293b;  /* Slate 800 */
         --card: #1e293b;     /* Slate 800 */
         --card-hover: #334155; /* Slate 700 */
@@ -71,25 +71,29 @@
         --text-main: #f8fafc; /* Slate 50 */
         --text-muted: #94a3b8; /* Slate 400 */
         --shadow-soft: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
-        --grid-color: rgba(148, 163, 184, 0.05);
+        --grid-color: rgba(56, 189, 248, 0.05); /* Very subtle blue grid */
         --bg-gradient-start: #1e293b;
         --bg-gradient-end: #0f172a;
       }
 
       [data-theme='light'] {
-        /* LIGHT THEME (Clean Industrial) */
-        --bg: #f1f5f9;       /* Slate 100 */
+        /* LIGHT THEME (Clean White/Blue) */
+        --bg: #f8fafc;       /* Slate 50 */
         --sidebar: #ffffff;  /* White */
         --card: #ffffff;     /* White */
-        --card-hover: #f8fafc; /* Slate 50 */
-        --input: #e2e8f0;    /* Slate 200 */
+        --card-hover: #f1f5f9; /* Slate 100 */
+        --input: #f1f5f9;    /* Slate 100 */
         --border: #cbd5e1;   /* Slate 300 */
-        --text-main: #0f172a; /* Slate 900 */
+        --text-main: #0f172a; /* Slate 900 (Dark Blue Text) */
         --text-muted: #64748b; /* Slate 500 */
-        --shadow-soft: 0 4px 20px -2px rgba(148, 163, 184, 0.3);
-        --grid-color: rgba(15, 23, 42, 0.05);
-        --bg-gradient-start: #e2e8f0;
-        --bg-gradient-end: #f1f5f9;
+        --shadow-soft: 0 4px 20px -2px rgba(148, 163, 184, 0.15);
+        --grid-color: rgba(148, 163, 184, 0.1);
+        --bg-gradient-start: #ffffff;
+        --bg-gradient-end: #f8fafc;
+      }
+      
+      html {
+        font-size: 18px; /* Increased base size for public readability */
       }
 
       body {
@@ -105,6 +109,7 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         transition: background-color 0.3s ease, color 0.3s ease;
+        font-family: 'Arial', sans-serif;
       }
       
       /* Refined Tech Borders */
@@ -118,8 +123,8 @@
         right: 0;
         width: 8px;
         height: 8px;
-        border-bottom: 2px solid #38bdf8;
-        border-right: 2px solid #38bdf8;
+        border-bottom: 2px solid #ef4444; /* Red Accent */
+        border-right: 2px solid #ef4444; /* Red Accent */
         opacity: 0.7;
       }
       
@@ -129,29 +134,29 @@
 
       /* Elegant Scrollbar */
       ::-webkit-scrollbar {
-        width: 6px;
+        width: 8px; /* Slightly wider for ease of use */
         background: transparent;
       }
       ::-webkit-scrollbar-thumb {
         background: var(--border);
-        border-radius: 3px;
+        border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
         background: var(--text-muted);
       }
       .scroll-container::-webkit-scrollbar {
-        width: 6px;
+        width: 8px;
       }
       
       /* Utilities */
       .bg-gradient-accent {
-        background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 100%);
+        background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%); /* Red Gradient */
       }
       .bg-gradient-red {
         background: linear-gradient(135deg, #f43f5e 0%, #e11d48 100%);
       }
       .font-tech {
-        font-family: 'Inter', sans-serif;
+        font-family: 'Arial', sans-serif;
       }
       
       /* Smooth transitions */
